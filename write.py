@@ -12,5 +12,6 @@ def write_to_sheets(data):
     client = gspread.authorize(creds)
     sheet = client.open("MyDataSheet").sheet1
     sheet.clear()
-    for i, item in enumerate(data, start=1):
-        sheet.update_cell(i, 1, item)
+    # вставляем все строки разом, начиная с A1
+    headers = [["Coin", "USD Price"]]
+    sheet.update('A1', headers + data)

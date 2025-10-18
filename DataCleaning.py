@@ -1,7 +1,7 @@
 def clean_data(data):
     cleaned = []
-    for d in data:
-        d = d.strip().lower()
-        if d not in cleaned and len(d) > 3:
-            cleaned.append(d)
+    for row in data:  # row = ['bitcoin', 97325]
+        # если элемент — строка, чистим; если нет — просто добавляем
+        cleaned_row = [str(x).strip().lower() if isinstance(x, str) else x for x in row]
+        cleaned.append(cleaned_row)
     return cleaned
